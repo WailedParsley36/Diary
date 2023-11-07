@@ -1,0 +1,107 @@
+    ---------------Main Menu----------------- 
+------------------------------------------------
+|                                              |
+|              APPLICATION NAME                |
+|                                              |
+|                                              |
+|             -> Show Records                  |
+|                  Settings                    |
+|                 Exit Diary                   |
+|                                              |
+|                                              |
+|             You have 0 entries               |
+|                                              |
+------------------------------------------------
+
+
+
+    ---------------Settings-----------------
+
+Main Menu -> Settings
+-------------------------------------------------------------------------
+|                                                                       |
+|                          Application Name                             |
+|                                                                       |
+|                                                                       |
+|      General // Underlined                                            |
+|      Fullscreen: True                                                 |
+|      Zoom: 1.5                                                        |
+|                                                                       |
+|      Records  // Underlined                                           |
+|      -> Records Format: .json                                         |
+|      Sort Records: Date/Title/No                                      |
+|                                                                       |
+|      Submit                                                           |
+|      Back                                                             |
+|                                                                       |
+|      Version 2.0                                                      |
+|                                                                       |
+-------------------------------------------------------------------------
+
+
+    ---------------Records-----------------
+
+Main Menu -> Records
+---------------------------------------------------
+|                                                 |
+|                Application Name                 |
+|                                                 |
+|                                                 |
+|      Record Count: 10                           |
+|                                                 |
+|      Options // Underlined                      |
+|      Create new                                 |
+|      Find by name                               |
+|      Go to exact                                |
+|      Go to date                                 |
+|                                                 |
+|      First Record  // Underlined                |
+|      Title: My Best Day                         |
+|      Date: 1.11.2023                            |
+|      Go there                                   |
+|                                                 |
+|      Last Record  // Underlined                 |
+|      Title: My Worst Day                        |
+|      Date: 10.11.2023                           |
+|      -> Go there                                |
+|                                                 |
+|                                                 |
+---------------------------------------------------
+
+
+    ---------------Record-----------------
+
+Main Menu -> Records -> Record Title
+-----------------------------------------------
+|                                             |
+|           Record Title - DateTime           |------------------------------------------------
+|                                             |                                               |
+|                                             |                   CONTROLS                    |
+|     Ahoj, deníèku dneska jsem byl hodnı     |                                               |
+|     Ahoj, deníèku dneska jsem byl hodnı     |     ESC -> Exit editing                       |
+|     Ahoj, deníèku dneska jsem byl hodnı     |     RETURN -> New line                        |
+|     Ahoj, deníèku dneska jsem byl hodnı     |     ARROWS -> Moving the cursor               |
+|     Ahoj, deníèku dneska jsem byl hodnı     |                                               |
+|     Ahoj, deníèku dneska jsem byl hodnı     |     PGUP -> Moves the page up                 |
+|     Ahoj, deníèku dneska jsem byl hodnı     |     PGDN -> Moves the page down               |
+|     Ahoj, deníèku dneska jsem byl hodnı     |                                               |
+|     Ahoj, deníèku dneska jsem byl hodnı     |                                               |
+|     Ahoj, deníèku dneska jsem byl hodnı     |------------------------------------------------
+|     Ahoj, deníèku dneska jsem byl hodnı     |
+|     Ahoj, deníèku dneska jsem byl hodnı     |
+|     Ahoj, deníèku dneska jsem byl hodnı     |
+|     Ahoj, deníèku dneska jsem byl hodnı     |
+|     Ahoj, deníèku dneska jsem byl hodnı     |
+|     Ahoj, deníèku dneska jsem byl hodnı     |
+|     Ahoj, deníèku dneska jsem byl hodnı     |
+|                     ...                     |
+|                                             |
+-----------------------------------------------
+|                    Save                     |
+|                    Edit                     |
+|                   Delete                    |
+|                                             |
+|                    Next                     |
+|                  Previous                   |
+|                    Back                     |
+-----------------------------------------------
