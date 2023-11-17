@@ -57,6 +57,7 @@ void ShowRecords()
         Console.WriteLine("6. Save current");
         Console.WriteLine("7. Back\n");
 
+        Console.WriteLine("----------------------------------------");
         if (currentRecord != null && temporaryRecord == null)
         {
             Console.WriteLine($"{currentRecord!.Value.Title} - {currentRecord.Value.DateRecorded}");
@@ -69,7 +70,13 @@ void ShowRecords()
             Console.WriteLine($"{temporaryRecord!.Title} - {temporaryRecord.DateRecorded}");
             Console.WriteLine($"\n{temporaryRecord.Content}");
         }
+        else
+        {
+            Console.WriteLine("NO RECORDS TO SHOW -> PLEASE CREATE ONE");
+        }
+        Console.WriteLine("----------------------------------------");
 
+        Console.Write("Command: ");
         switch (ReadUserInt(1, 7))
         {
             case 1:
@@ -94,10 +101,16 @@ void ShowRecords()
                 if (currentRecord == null)
                     continue;
 
-                records.Remove(currentRecord);
+                Console.WriteLine("Do you really want to DELETE this record? (y/n)");
+                if (Console.ReadLine() == "y")
+                {
+                    records.Remove(currentRecord);
 
-                currentIndex = 0;
-                currentRecord = records.First;
+                    currentIndex = 0;
+                    currentRecord = records.First;
+
+                    FileManager.SaveRecords(records);
+                }
                 break;
 
             case 4:
