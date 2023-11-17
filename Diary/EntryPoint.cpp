@@ -1,4 +1,4 @@
-#include <iostream>
+ï»¿#include <iostream>
 #include <Windows.h>
 #include <functional>
 
@@ -17,9 +17,9 @@ int main()
 		info->Zoom = 22;
 	}
 
-	info->Title = u8"Mùj milý deníèek 2.0";
+	info->Title = u8"MÅ¯j milÃ½ denÃ­Äek 2.0";
 	if (info->Title == nullptr)
-		info->Title = u8"My BEST Diary 2.0";
+		info->Title = "My BEST Diary 2.0";
 
 	info->StartupItem = new MainMenu();
 	Console::Run(info);

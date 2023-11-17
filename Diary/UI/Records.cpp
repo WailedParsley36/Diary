@@ -44,7 +44,10 @@ void Records::Render()
 	if (length > 0) {
 		std::cout << spaces + "|                                                 |\n";
 		std::cout << spaces + "|      \x1B[4mFirst Record\x1B[0m                               |\n";
-		std::cout << spaces + "|      Title: \x1B[3m" << FileManager::Records.Head->Value->Title << "\x1B[0m";
+		std::cout << spaces + "|      Title: \x1B[3m";
+		PrintString(FileManager::Records.Head->Value->Title);
+		std::cout << "\x1B[0m";
+
 		Console::SetCursorPosition(m_XOffset + 50, m_YOffset + 16);
 		std::cout << "|\n";
 
@@ -59,7 +62,10 @@ void Records::Render()
 
 		std::cout << spaces + "|                                                 |\n";
 		std::cout << spaces + "|      \x1B[4mLast Record\x1B[0m                                |\n";
-		std::cout << spaces + "|      Title: \x1B[3m" << FileManager::Records.Tail->Value->Title << "\x1B[0m";
+		std::cout << spaces + "|      Title: \x1B[3m";
+		PrintString(FileManager::Records.Head->Value->Title);
+		std::cout << "\x1B[0m";
+
 		Console::SetCursorPosition(m_XOffset + 50, m_YOffset + 21);
 		std::cout << "|\n";
 
@@ -266,9 +272,11 @@ void Records::OnKeyInput(KEY_EVENT_RECORD* eventItem)
 			detail->ShowedRecord = new Node<Record>();
 
 			Record* record = new Record();
-			int size = sizeof(u8"Nový Zápis\0");
+
+			// This is for the deletion to work
+			int size = sizeof("Nový Zápis\0");
 		    char* title = (char*)malloc(size);
-			strcpy_s(title, size, u8"Nový Zápis\0");
+			strcpy_s(title, size, "Nový Zápis\0");
 
 			record->Title = (const char*)title;
 			record->Time.tm_mday = detail->RecordPosition;
@@ -276,7 +284,7 @@ void Records::OnKeyInput(KEY_EVENT_RECORD* eventItem)
 			record->Time.tm_mon = 11;
 			detail->ShowedRecord->Value = record;
 
-			FileManager::Records.Append(detail->ShowedRecord);	
+			FileManager::Records.Append(detail->ShowedRecord);
 			Console::ChangeItem(detail, true);
 			break;
 		}

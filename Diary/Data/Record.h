@@ -4,8 +4,8 @@
 struct Record
 {
 public:
-	const char* Title;
-	const char* Content;
+	const CHAR* Title;
+	const WCHAR* Content;
 	tm Time;
 
 	inline ~Record() {

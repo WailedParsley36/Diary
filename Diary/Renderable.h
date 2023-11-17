@@ -20,6 +20,11 @@ protected:
 	bool IsInputActive = false;
 	std::wstring UserInput;
 
+	void PrintCharacter(CHAR charToPrint);
+	void PrintCharacter(WCHAR charToPrint);
+	void PrintString(const CHAR* stringToPrint);
+	void PrintString(const WCHAR* stringToPrint);
+
 private:
 	COORD m_ConsoleStartPos;
 	int m_ID;
@@ -28,6 +33,12 @@ private:
 
 	int m_VerticalMax;
 
-	bool m_Vertical;
+	bool m_Vertical = true;
 	bool m_IsNumber;
+
+	int GetNewLineCount(bool fast = true);
+	int GetNewLineIndex(int position = 0, int startIndex = 0, int* encounteredLines = nullptr);
+	void GoToNewLine(int newLineIndex);
+
+	bool CheckMaxLimit();
 };

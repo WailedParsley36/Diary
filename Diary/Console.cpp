@@ -3,6 +3,7 @@
 #include <iostream>
 #include "FileManager.h"
 
+
 COORD Console::BufferSize;
 ConsoleStartupInfo* Console::Settings;
 
@@ -74,7 +75,10 @@ void Console::Exit(int code)
 
 void Console::SetTitle(const char* title)
 {
-	SetConsoleTitleA(title);
+	int len = strlen(title) + 1;
+	wchar_t* wTitle = (wchar_t*)malloc(len * sizeof(wchar_t));
+	mbstowcs_s(0, wTitle, len, title, len);
+	SetConsoleTitleW(wTitle);
 }
 void Console::SetFullscreen(bool fullscreen, bool reRender)
 {

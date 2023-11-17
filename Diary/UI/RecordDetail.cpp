@@ -16,11 +16,17 @@ void RecordDetail::Render()
 	Console::SetCursorPosition(0, m_YOffset);
 	std::string spaces = std::string(m_XOffset, ' ');
 
-	std::cout << spaces + "Main Menu -> Records[" << RecordPosition << "] -> " << ShowedRecord->Value->Title << '\n';
+	std::cout << spaces + "Main Menu -> Records[" << RecordPosition << "] -> ";
+	PrintString(ShowedRecord->Value->Title);
+	std::cout << '\n';
+
 	std::cout << spaces + "-----------------------------------------------\n";
 	std::cout << spaces + "|                                             |\n";
 	std::cout << spaces + "|\x1B[1m";
-	std::cout << std::string(22 - ((strlen(ShowedRecord->Value->Title) + 13) / 2), ' ') << ShowedRecord->Value->Title << " - ";
+	std::cout << std::string(22 - ((strlen(ShowedRecord->Value->Title) + 13) / 2), ' ');
+	PrintString(ShowedRecord->Value->Title);
+	std::cout << " - ";
+
 	std::cout << ShowedRecord->Value->Time.tm_mday << '.' << ShowedRecord->Value->Time.tm_mon << '.' << ShowedRecord->Value->Time.tm_year << "\x1B[0m";
 	Console::SetCursorPosition(m_XOffset + 46, m_YOffset + 3);
 	std::cout << "|------------------------------------------------\n";
@@ -63,6 +69,9 @@ void RecordDetail::Render()
 	std::cout << spaces + "|                    Back                     |\n";
 	std::cout << spaces + "-----------------------------------------------\n";
 
+	Console::SetCursorPosition(m_XOffset + 7, m_YOffset + 5);
+	PrintString(ShowedRecord->Value->Content);
+
 	MoveTo(m_CurrentItemIndex, true);
 }
 
@@ -104,10 +113,9 @@ void RecordDetail::OnKeyInput(KEY_EVENT_RECORD* eventItem)
 		case 1:
 			Console::SetCursorPosition(m_XOffset + 3, m_YOffset + 6);
 			std::cout << "-> ";
-
+				
+			UserInput = std::wstring(ShowedRecord->Value->Content);
 			ReadUserInput(0, 35, 0, false, -1, true, 17);
-
-			UserInput += L"";
 			break;
 
 			// Delete
@@ -171,6 +179,15 @@ void RecordDetail::UserInputCompleted(int id, bool back)
 {
 	Console::SetCursorPosition(m_XOffset + 3, m_YOffset + 6);
 	std::cout << "   ";
+
+	// Edited the diary entry
+	if (id == 0) {
+		int len = (UserInput.length() + 1) * sizeof(WCHAR);
+		WCHAR* inputCopy = (WCHAR*)malloc(len);
+		wcscpy_s(inputCopy, len, UserInput.c_str());
+		ShowedRecord->Value->Content = inputCopy;
+		UserInput.clear();
+	}
 }
 
 int RecordDetail::GetXOffset(int index) {
