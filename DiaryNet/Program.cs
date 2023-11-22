@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using static ConsoleUtility;
 
 Console.OutputEncoding = System.Text.Encoding.UTF8;
 Console.InputEncoding = System.Text.Encoding.UTF8;
@@ -34,7 +35,7 @@ while (shouldRun)
 
 FileManager.SaveRecords(records);
 
-
+#region Methods
 void ShowRecords()
 {
     bool showingRecords = true;
@@ -160,11 +161,6 @@ void ShowRecords()
         }
     }
 }
-
-
-const string DateFormat = "dd.MM.yyyy HH:mm";
-
-#region Methods
 void RunEditor(DiaryRecord record)
 {
     Console.Clear();
@@ -203,47 +199,52 @@ DiaryRecord RunCreator()
 #endregion
 
 #region Utility
-int ReadUserInt(int min, int max)
+static class ConsoleUtility
 {
-    int value = 0;
-    while (!int.TryParse(Console.ReadLine(), out value) && (value < min || value > max))
-        Console.Write($"Try again ({min}-{max}): ");
+    public const string DateFormat = "dd.MM.yyyy HH:mm";
 
-    return value;
-}
-DateTime ReadUserDateTime()
-{
-    Console.Write($"({DateFormat}): ");
-    DateTime value = DateTime.Today;
-
-    bool success = false;
-    while (!success)
+    public static int ReadUserInt(int min, int max)
     {
-        try
+        int value = 0;
+        while (!int.TryParse(Console.ReadLine(), out value) && (value < min || value > max))
+            Console.Write($"Try again ({min}-{max}): ");
+
+        return value;
+    }
+    public static DateTime ReadUserDateTime()
+    {
+        Console.Write($"({DateFormat}): ");
+        DateTime value = DateTime.Today;
+
+        bool success = false;
+        while (!success)
         {
-            value = DateTime.ParseExact(Console.ReadLine()!, DateFormat, null);
-            success = true;
+            try
+            {
+                value = DateTime.ParseExact(Console.ReadLine()!, DateFormat, null);
+                success = true;
+            }
+            catch
+            {
+                Console.Write($"Try again ({DateFormat}): ");
+            }
         }
-        catch
-        {
-            Console.Write($"Try again ({DateFormat}): ");
-        }
+
+        return value;
     }
 
-    return value;
-}
+    public static string ReadMultipleUserLines()
+    {
+        Console.WriteLine("Entered multiline input. To end simply write \"end\"");
 
-string ReadMultipleUserLines()
-{
-    Console.WriteLine("Entered multiline input. To end simply write \"end\"");
+        string result = string.Empty;
 
-    string result = string.Empty;
+        string currentLine = "";
+        while ((currentLine = Console.ReadLine()!) != "end")
+            result += currentLine + '\n';
 
-    string currentLine = "";
-    while ((currentLine = Console.ReadLine()!) != "end")
-        result += currentLine + '\n';
-
-    return result;
+        return result;
+    }
 }
 #endregion
 
